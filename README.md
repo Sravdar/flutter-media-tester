@@ -1,16 +1,25 @@
 # mediakit_tester
 
-A new Flutter project.
+Flutter app to test video playbacks.
 
-## Getting Started
+## Raspberry pi instruction
 
-This project is a starting point for a Flutter application.
+-  Install raspberry os bookworm (64 bit headless) 
+-  Install [flutter elinux](https://github.com/sony/flutter-elinux)
+-  Install dependecies. TODO: Impelement dependency list here
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+cd ~
+git clone https://github.com/Sravdar/flutter-media-tester/
+cd flutter-media-tester
+flutter-elinux clean
+flutter-elinux pub get
+flutter-elinux build elinux --release --target-backend-type=gbm
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# remove generated ffmpeg lib for hardware acceleartion
+sudo rm ~/flutter-media-tester/build/elinux/arm64/release/bundle/lib/libffmpeg.so.8
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# run
+sudo FLUTTER_DRM_DEVICE=/dev/dri/card1 ~/flutter-media-tester/build/elinux/arm64/release/bundle/flutter-media-tester -b ~/flutter-media-tester/build/elinux/arm64/release/bundle
+
+```
