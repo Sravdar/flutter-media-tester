@@ -14,7 +14,7 @@ git clone https://github.com/Sravdar/flutter-media-tester/
 cd flutter-media-tester
 flutter-elinux clean
 flutter-elinux pub get
-flutter-elinux build elinux --release --target-backend-type=gbm
+FVP_DEPS_LATEST=1 flutter-elinux build elinux --release --target-backend-type=gbm
 
 # remove generated ffmpeg lib for hardware acceleartion
 sudo rm ~/flutter-media-tester/build/elinux/arm64/release/bundle/lib/libffmpeg.so.8
